@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>send</button>
+    <script>
+        const btns = document.querySelectorAll('button');
+        let x = new XMLHttpRequest();
+        // 判断是否真正发送AJAX请求
+        let isSending = false;
+        btns[0].onclick = () => {
+            if (isSending) x.abort(); //如果已经在发送了，就取消当前请求
+            // 再创建一个新请求
+            x.open('GET', 'http://127.0.0.1:8000/delay');
+            x.send();
+            isSending = true;
+            x.onreadystatechange = () => {
+                // 不必判断响应状态码，因为成不成功都要改isSending标识
+                if (x.readyState === 4) isSending = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
