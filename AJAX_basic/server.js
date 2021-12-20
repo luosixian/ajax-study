@@ -45,6 +45,24 @@ app.get('/delay', (request, response) => {
     }, 3000)
 });
 
+// axios
+app.all('/axios-server', (request, response) => {
+    // 设置响应头,设置允许跨域
+    response.setHeader('Access-control-Allow-Origin', '*')
+    response.setHeader('Access-control-Allow-Headers', '*')
+    const data = { name: 'keke' };
+    response.send(JSON.stringify(data));
+});
+
+// fetch
+app.all('/fetch-server', (request, response) => {
+    // 设置响应头,设置允许跨域
+    response.setHeader('Access-control-Allow-Origin', '*')
+    response.setHeader('Access-control-Allow-Headers', '*')
+    const data = { name: 'keke' };
+    response.send(JSON.stringify(data));
+});
+
 // 4. 监听端口启动服务
 app.listen(8000, () => {
     console.log('服务已启动，8000 端口监听中...');

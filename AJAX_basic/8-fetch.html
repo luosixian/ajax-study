@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>AJAX REQUEST</button>
+    <script>
+        const btn = document.querySelector('button');
+        btn.onclick = () => {
+            // 第一个参数
+            fetch('http:127.0.0.1:8000/fetch-server?vip=10', {
+                // 请求方法
+                method: 'POST',
+                // 请求头
+                headers: {
+                    name: 'keke'
+                },
+                // 请求体,可以写很多格式
+                body: 'uname=admin&pwd=admin'
+            }).then(response => {
+                //return response.text()  //获得响应体的方法-字符串
+                return response.json()   //如果服务端返回的是json
+            }).then(response => {
+                console.log(response);  //获得响应体的方法
+            })
+        }
+    </script>
+</body>
+
+</html>
