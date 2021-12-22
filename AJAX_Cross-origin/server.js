@@ -36,6 +36,14 @@ app.all('/check-uname', (request, response) => {
     response.send(`handle(${str})`)
 })
 
+//CORS
+app.all('/cors-server', (request, response) => {
+    //设置响应头,可以单独设置，也可以通配（*）
+    //response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5000");
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.send('HELLO CORS')
+})
+
 app.listen(9000, () => {
     console.log('服务已启动...');
 })
